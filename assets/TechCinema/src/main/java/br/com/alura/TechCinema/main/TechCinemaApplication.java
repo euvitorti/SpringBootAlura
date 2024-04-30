@@ -15,7 +15,7 @@ public class TechCinemaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Api api = new Api();
-		var json = api.connect("https://v6.exchangerate-api.com/v6/9c669a74faaada81ba36788e/latest/USD");
+		var json = api.connect("https://www.omdbapi.com/?t=matrix&apikey=cea70f0f");
 		System.out.println(json);
 	}
 }

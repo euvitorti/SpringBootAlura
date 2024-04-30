@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/TechCinema.iml" filepath="$PROJECT_DIR$/.idea/TechCinema.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TechCinema/TechCinema.iml" filepath="$PROJECT_DIR$/TechCinema/TechCinema.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/assets.iml" filepath="$PROJECT_DIR$/.idea/assets.iml" />
     </modules>
   </component>
 </project>
