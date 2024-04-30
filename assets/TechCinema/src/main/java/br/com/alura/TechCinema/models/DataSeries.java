@@ -6,5 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 // PARA IGNORAR CAMPOS QUE NÃO PRECISAMOS, USAMOS @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record DataSeries(String Title, Integer totalSeasons, String imdbRating) {
+public record DataSeries(String Title,
+                         Integer totalSeasons,
+                         String imdbRating) {
 }
