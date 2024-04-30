@@ -1,6 +1,8 @@
 package br.com.alura.TechCinema.main;
 
 import br.com.alura.TechCinema.api.Api;
+import br.com.alura.TechCinema.models.ConvertData;
+import br.com.alura.TechCinema.models.DataSeries;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +17,9 @@ public class TechCinemaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Api api = new Api();
-		var json = api.connect("https://www.omdbapi.com/?t=matrix&apikey=cea70f0f");
-		System.out.println(json);
+		var json = api.connect("YOURKEY");
+		ConvertData convertData = new ConvertData();
+		DataSeries dataSeries = convertData.getData(json, DataSeries.class);
+		System.out.println(dataSeries);
 	}
 }
