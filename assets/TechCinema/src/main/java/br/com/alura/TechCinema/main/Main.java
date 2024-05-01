@@ -1,15 +1,22 @@
 package br.com.alura.TechCinema.main;
 
 import br.com.alura.TechCinema.api.Api;
+import br.com.alura.TechCinema.models.ConvertData;
+import br.com.alura.TechCinema.models.DataSeason;
+import br.com.alura.TechCinema.models.DataSeries;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
     private Scanner scanner = new Scanner(System.in);
+    private ConvertData convertData = new ConvertData();
+    private Api api = new Api();
+
     private final String ADDRESS = "https://www.omdbapi.com/?t=";
     private final String API_KEY = "";
-    private Api api = new Api();
 
     public void menu() {
         System.out.println("Welcome!  😊");
@@ -19,10 +26,19 @@ public class Main {
         String seriesName = scanner.next();
 
         var json = api.connect( ADDRESS + seriesName.replace(" ", "+") + API_KEY);
-        //https://www.omdbapi.com/?t=gilmore+girls&season=1&episode=1&apikey=cea70f0f
+
+        DataSeries dataSeries = convertData.getData(json, DataSeries.class);
+        System.out.println(dataSeries);
+
+        List<DataSeason> seasons = new ArrayList<>();
+
+        for (int i = 1; i < dataSeries.totalSeasons(); i++) {
+			json = api.connect(ADDRESS + seriesName.replace(" ", "+") + "&season=" + i + API_KEY);
+			DataSeason dataSeason = convertData.getData(json, DataSeason.class);
+			seasons.add(dataSeason);
+        }
+
+		seasons.forEach(System.out::println);
     }
 
-    public static void main(String[] args) {
-
-    }
 }
