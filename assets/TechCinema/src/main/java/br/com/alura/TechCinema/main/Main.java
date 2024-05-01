@@ -17,14 +17,14 @@ public class Main {
     private Api api = new Api();
 
     private final String ADDRESS = "https://www.omdbapi.com/?t=";
-    private final String API_KEY = "";
+    private final String API_KEY = "YOURAPIKEY";
 
     public void menu() {
         System.out.println("Welcome!  😊");
         System.out.println("------------");
         System.out.println("Series name:");
 
-        String seriesName = scanner.next();
+        String seriesName = scanner.nextLine();
 
         var json = api.connect( ADDRESS + seriesName.replace(" ", "+") + API_KEY);
 
@@ -40,13 +40,6 @@ public class Main {
         }
 
         seasons.forEach(System.out::println);
-
-//        for (int i = 0; i < dataSeries.totalSeasons(); i++) {
-//            List<DataEpisode> dataEpisodes = seasons.get(i).dataEpisodes();
-//            for (int j = 0; j < dataEpisodes.size(); i++) {
-//                System.out.println(dataEpisodes.get(i).Title());
-//            }
-//        }
 
         // LAMBDA
         seasons.forEach(t -> t.dataEpisodes().forEach(e -> System.out.println(e.Title())));
