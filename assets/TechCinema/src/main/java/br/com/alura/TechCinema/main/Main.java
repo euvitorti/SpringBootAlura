@@ -1,10 +1,7 @@
 package br.com.alura.TechCinema.main;
 
 import br.com.alura.TechCinema.api.Api;
-import br.com.alura.TechCinema.models.ConvertData;
-import br.com.alura.TechCinema.models.DataEpisode;
-import br.com.alura.TechCinema.models.DataSeason;
-import br.com.alura.TechCinema.models.DataSeries;
+import br.com.alura.TechCinema.models.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -49,7 +46,7 @@ public class Main {
         List<DataEpisode> dataEpisodes = seasons.stream()
                 .flatMap(t -> t.episodes().stream())
                 .collect(Collectors.toList());
-                // toList é imutável, não será possível adicionar outro episódio
+        // toList é imutável, não será possível adicionar outro episódio
 
         // COMPARANDO A AVALIAÇÃO DO EP COM OS OUTROS, PARA RETONAR OS QUE TEM A MELHOR AVALIÇÃO
         // IGNORA TODOS AQUELES QUE NÃO TEM AVALIAÇÃO
@@ -60,6 +57,12 @@ public class Main {
                 .limit(5)
                 .forEach(System.out::println);
 
+        List<Episode> episodes = seasons.stream()
+                .flatMap(t -> t.episodes().stream()
+                        .map(d -> new Episode(t.Season(), d))
+                ).collect(Collectors.toList());
+
+        episodes.forEach(System.out::println);
     }
 }
 
