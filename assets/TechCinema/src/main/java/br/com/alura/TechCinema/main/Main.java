@@ -3,6 +3,8 @@ package br.com.alura.TechCinema.main;
 import br.com.alura.TechCinema.api.Api;
 import br.com.alura.TechCinema.models.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -63,6 +65,26 @@ public class Main {
                 ).collect(Collectors.toList());
 
         episodes.forEach(System.out::println);
+
+        System.out.println("What year?");
+        int year = scanner.nextInt();
+        // PARA NÃO OCORRER UM ERRO AO LER
+        scanner.nextLine();
+
+        LocalDate dateSearch = LocalDate.of(year, 1,1);
+
+        // DATA FORMATADA
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        // BASEADO EM UM ANO
+        episodes.stream()
+                .filter(e -> e.getReleased() != null && e.getReleased().isAfter(dateSearch))
+                .forEach(e -> System.out.printf(
+                        "\nSeason: " + e.getSeason() +
+                                " Episode: " + e.getEpisode() +
+                                " Released: " + e.getReleased().format(dateTimeFormatter)
+                ));
+
     }
 }
 
