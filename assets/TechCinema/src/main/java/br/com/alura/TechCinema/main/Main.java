@@ -7,8 +7,10 @@ import br.com.alura.TechCinema.models.DataSeason;
 import br.com.alura.TechCinema.models.DataSeries;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -41,8 +43,24 @@ public class Main {
 
         seasons.forEach(System.out::println);
 
-        // LAMBDA
-        seasons.forEach(t -> t.dataEpisodes().forEach(e -> System.out.println(e.Title())));
-    }
+//         LAMBDA
+        seasons.forEach(t -> t.episodes().forEach(e -> System.out.println(e.Title())));
 
+        List<DataEpisode> dataEpisodes = seasons.stream()
+                .flatMap(t -> t.episodes().stream())
+                .collect(Collectors.toList());
+                // toList é imutável, não será possível adicionar outro episódio
+
+        // COMPARANDO A AVALIAÇÃO DO EP COM OS OUTROS, PARA RETONAR OS QUE TEM A MELHOR AVALIÇÃO
+        // IGNORA TODOS AQUELES QUE NÃO TEM AVALIAÇÃO
+        System.out.println("\nTop 5 better");
+        dataEpisodes.stream()
+                .filter(e -> !e.imdbRating().equalsIgnoreCase("N/A"))
+                .sorted(Comparator.comparing(DataEpisode::imdbRating).reversed())
+                .limit(5)
+                .forEach(System.out::println);
+
+    }
 }
+
+
