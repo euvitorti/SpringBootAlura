@@ -66,22 +66,22 @@ public class Main {
 
         episodes.forEach(System.out::println);
 
-//        // ENCONTRANDO A PRIMEIRA OCORRÊNCIA DE UMA BUSCA EM UMA COLEÇÃO
-//        System.out.println("--------------");
-//        System.out.println("Episode Name: ");
-//        String episodesName = scanner.nextLine();
-//
-//        // OPTIONAL É UM OBJETO CONTÊINER QUE PODE OU NÃO CONTER UM VALOR NÃO NULO
-//        Optional<Episode> searchEpisode = episodes.stream()
-//                .filter(e -> e.getTitle().toUpperCase().contains(episodesName.toUpperCase()))
-//                .findFirst();
-//
-//        if (searchEpisode.isPresent()) {
-//            System.out.println("\nEpisode found!");
-//            System.out.println("Season: " + searchEpisode.get().getSeason());
-//        } else {
-//            System.out.println("Episode not found!\n");
-//        }
+        // ENCONTRANDO A PRIMEIRA OCORRÊNCIA DE UMA BUSCA EM UMA COLEÇÃO
+        System.out.println("--------------");
+        System.out.println("Episode Name: ");
+        String episodesName = scanner.nextLine();
+
+        // OPTIONAL É UM OBJETO CONTÊINER QUE PODE OU NÃO CONTER UM VALOR NÃO NULO
+        Optional<Episode> searchEpisode = episodes.stream()
+                .filter(e -> e.getTitle().toUpperCase().contains(episodesName.toUpperCase()))
+                .findFirst();
+
+        if (searchEpisode.isPresent()) {
+            System.out.println("\nEpisode found!");
+            System.out.println("Season: " + searchEpisode.get().getSeason());
+        } else {
+            System.out.println("Episode not found!\n");
+        }
 
         System.out.println("What year?");
         int year = scanner.nextInt();
