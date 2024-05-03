@@ -5,10 +5,7 @@ import br.com.alura.TechCinema.models.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -55,8 +52,11 @@ public class Main {
         System.out.println("\nTop 5 better");
         dataEpisodes.stream()
                 .filter(e -> !e.imdbRating().equalsIgnoreCase("N/A"))
+                .peek(e -> System.out.println("Primeiro Filtro (N/A): " + e))
                 .sorted(Comparator.comparing(DataEpisode::imdbRating).reversed())
+                .peek(e -> System.out.println("Ordenação: " + e))
                 .limit(5)
+                .peek(e -> System.out.println("Limite: " + e))
                 .forEach(System.out::println);
 
         List<Episode> episodes = seasons.stream()
@@ -65,6 +65,23 @@ public class Main {
                 ).collect(Collectors.toList());
 
         episodes.forEach(System.out::println);
+
+//        // ENCONTRANDO A PRIMEIRA OCORRÊNCIA DE UMA BUSCA EM UMA COLEÇÃO
+//        System.out.println("--------------");
+//        System.out.println("Episode Name: ");
+//        String episodesName = scanner.nextLine();
+//
+//        // OPTIONAL É UM OBJETO CONTÊINER QUE PODE OU NÃO CONTER UM VALOR NÃO NULO
+//        Optional<Episode> searchEpisode = episodes.stream()
+//                .filter(e -> e.getTitle().toUpperCase().contains(episodesName.toUpperCase()))
+//                .findFirst();
+//
+//        if (searchEpisode.isPresent()) {
+//            System.out.println("\nEpisode found!");
+//            System.out.println("Season: " + searchEpisode.get().getSeason());
+//        } else {
+//            System.out.println("Episode not found!\n");
+//        }
 
         System.out.println("What year?");
         int year = scanner.nextInt();
