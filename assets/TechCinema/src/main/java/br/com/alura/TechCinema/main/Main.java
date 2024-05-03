@@ -111,7 +111,17 @@ public class Main {
                         ));
 
         System.out.println(seasonRating);
+
+        // COLETANDO ESTATÍSCAS
+        DoubleSummaryStatistics est = episodes.stream()
+                .filter(e -> e.getImdbRating() > 0.0)
+                .collect(Collectors.summarizingDouble(Episode::getImdbRating));
+
+        System.out.printf("""
+                Average: %.1f
+                Highest rating: %.1f
+                Lowest rating: %.1f
+                Count: %d
+                """, est.getAverage(), est.getMax(), est.getMin(), est.getCount());
     }
 }
-
-
