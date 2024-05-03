@@ -102,6 +102,15 @@ public class Main {
                                 " Released: " + e.getReleased().format(dateTimeFormatter)
                 ));
 
+        // Mapa com dados da temporada
+        Map<Integer, Double> seasonRating = episodes.stream()
+                .filter(e -> e.getImdbRating() > 0.0)
+                .collect(
+                        Collectors.groupingBy(Episode::getSeason,
+                                Collectors.averagingDouble(Episode::getImdbRating)
+                        ));
+
+        System.out.println(seasonRating);
     }
 }
 
