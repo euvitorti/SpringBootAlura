@@ -1,4 +1,4 @@
-package br.com.alura.TechCinema.models;
+package br.com.alura.TechCinema.service;
 
 public interface Data {
 

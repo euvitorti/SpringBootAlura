@@ -1,4 +1,4 @@
-package br.com.alura.TechCinema.main;
+package br.com.alura.TechCinema;
 
 import br.com.alura.TechCinema.main.Principal;
 import org.springframework.boot.CommandLineRunner;
@@ -15,8 +15,8 @@ public class TechCinemaApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Principal main = new Principal();
-        main.menu();
+        Principal principal = new Principal();
+        principal.menu();
 
     }
 }

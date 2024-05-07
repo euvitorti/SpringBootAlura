@@ -1,9 +1,11 @@
 package br.com.alura.TechCinema.main;
 
-import br.com.alura.TechCinema.api.Api;
+import br.com.alura.TechCinema.service.Api;
 import br.com.alura.TechCinema.models.*;
+import br.com.alura.TechCinema.service.ConvertData;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Principal {
 
@@ -34,6 +36,7 @@ public class Principal {
                     """);
 
             choice = scanner.nextByte();
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -66,7 +69,7 @@ public class Principal {
                 --------------
                 Nome da série:""");
 
-        String seriesName = scanner.next();
+        String seriesName = scanner.nextLine();
 
         var json = api.connect( ADDRESS + seriesName.replace(" ", "+") + API_KEY);
 
@@ -89,7 +92,15 @@ public class Principal {
     }
 
     private void listSearchedSeries() {
-        listDataSeries.forEach(System.out::println);
+        List<Serie> serieList = new ArrayList<>();
+
+        serieList = listDataSeries.stream()
+                .map(d -> new Serie(d))
+                .collect(Collectors.toList());
+
+        serieList.stream()
+                .sorted(Comparator.comparing(Serie::getGenre))
+                .forEach(System.out::println);
     }
 }
 //        seasons.forEach(System.out::println);

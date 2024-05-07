@@ -1,4 +1,4 @@
-package br.com.alura.TechCinema.api;
+package br.com.alura.TechCinema.service;
 
 import java.io.IOException;
 import java.net.URI;

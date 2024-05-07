@@ -20,4 +20,73 @@ public class Serie {
         this.poster = dataSeries.Poster();
         this.plot = dataSeries.Plot();
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Integer getTotalSeasons() {
+        return totalSeasons;
+    }
+
+    public void setTotalSeasons(Integer totalSeasons) {
+        this.totalSeasons = totalSeasons;
+    }
+
+    public double getImdbRating() {
+        return imdbRating;
+    }
+
+    public void setImdbRating(double imdbRating) {
+        this.imdbRating = imdbRating;
+    }
+
+    public Category getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Category genre) {
+        this.genre = genre;
+    }
+
+    public String getActors() {
+        return actors;
+    }
+
+    public void setActors(String actors) {
+        this.actors = actors;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+
+    public String getPlot() {
+        return plot;
+    }
+
+    public void setPlot(String plot) {
+        this.plot = plot;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "\n" +
+                        "Genre: " + genre +
+                        "Title: " + title +
+                        "TotalSeasons: " + totalSeasons +
+                        "Rating: " + imdbRating +
+                        "Actors: '" + actors +
+                        "Poster='" + poster +
+                        "Plot='" + plot;
+    }
 }

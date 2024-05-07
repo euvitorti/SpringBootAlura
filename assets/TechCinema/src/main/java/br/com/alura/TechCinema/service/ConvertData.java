@@ -1,9 +1,9 @@
-package br.com.alura.TechCinema.models;
+package br.com.alura.TechCinema.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class ConvertData implements Data{
+public class ConvertData implements Data {
     // PARA CONVERTER DADOS USA A CLASSE OBJECT MAPPER
 
     private ObjectMapper objectMapper = new ObjectMapper();
