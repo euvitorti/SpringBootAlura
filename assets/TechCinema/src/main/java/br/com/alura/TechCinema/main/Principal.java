@@ -17,7 +17,7 @@ public class Principal {
 
     private final String ADDRESS = "https://www.omdbapi.com/?t=";
 
-    private final String API_KEY = "&apikey=cea70f0f";
+    private final String API_KEY = "YOUR API KEY";
 
     private List<DataSeries> listDataSeries = new ArrayList<>();
 
@@ -61,7 +61,8 @@ public class Principal {
     private void searchSerie() {
         DataSeries data = getDataSerie();
         listDataSeries.add(data);
-        System.out.println(data);
+        listSearchedSeries();
+//        System.out.println(data);
     }
 
     private DataSeries getDataSerie() {

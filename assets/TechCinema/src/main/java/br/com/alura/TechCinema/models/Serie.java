@@ -1,5 +1,7 @@
 package br.com.alura.TechCinema.models;
 
+import br.com.alura.TechCinema.service.ChatGpt;
+
 import java.util.OptionalDouble;
 
 public class Serie {
@@ -19,6 +21,9 @@ public class Serie {
         this.actors = dataSeries.Actors();
         this.poster = dataSeries.Poster();
         this.plot = dataSeries.Plot();
+
+        // Para traduzir a sinopse, use a próxima linha de código
+        // this.plot = ChatGpt.getTranslate(dataSeries.Plot()).trim();
     }
 
     public String getTitle() {
@@ -80,13 +85,14 @@ public class Serie {
     @Override
     public String toString() {
         return
-                "\n" +
-                        "Genre: " + genre +
-                        "Title: " + title +
-                        "TotalSeasons: " + totalSeasons +
-                        "Rating: " + imdbRating +
-                        "Actors: '" + actors +
-                        "Poster='" + poster +
-                        "Plot='" + plot;
+                "--------------------------\n" +
+                        "Genre: " + genre + "\n" +
+                        "Title: " + title + "\n" +
+                        "TotalSeasons: " + totalSeasons + "\n" +
+                        "Rating: " + imdbRating + "\n" +
+                        "Actors: " + actors + "\n" +
+                        "Poster: " + poster + "\n" +
+                        "Plot: " + plot + "\n" +
+                        "🎥   Thanks for using   🎥\n";
     }
 }
