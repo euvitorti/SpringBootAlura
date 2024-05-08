@@ -1,10 +1,7 @@
 package br.com.alura.TechCinema.models;
 
-import org.springframework.cglib.core.Local;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.List;
 
 public class Episode {
     private String title;

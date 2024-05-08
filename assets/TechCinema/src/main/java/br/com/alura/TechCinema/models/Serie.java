@@ -1,16 +1,36 @@
 package br.com.alura.TechCinema.models;
 
-import br.com.alura.TechCinema.service.ChatGpt;
+import jakarta.persistence.*;
 
 import java.util.OptionalDouble;
 
+// TODO ESTUDAR JPA
+
+// ESSA CLASSE É UMA TABELA DO BANCO DE DADOS
+@Entity
+@Table(name = "series")
 public class Serie {
+
+    // EXISTE VÁRIAS FORMAS DE GERAR O ID
+    // IDENTITY É AUTO INCREMENT
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(unique = true)
     private String title;
+
     private Integer totalSeasons;
+
     private double imdbRating;
+
+    @Enumerated(EnumType.STRING)
     private Category genre;
+
     private String actors;
+
     private String poster;
+
     private String plot;
 
     public Serie(DataSeries dataSeries) {
@@ -24,6 +44,14 @@ public class Serie {
 
         // Para traduzir a sinopse, use a próxima linha de código
         // this.plot = ChatGpt.getTranslate(dataSeries.Plot()).trim();
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitle() {
