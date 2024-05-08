@@ -1,5 +1,6 @@
 package br.com.alura.TechCinema.main;
 
+import br.com.alura.TechCinema.repository.SerieRepository;
 import br.com.alura.TechCinema.service.Api;
 import br.com.alura.TechCinema.models.*;
 import br.com.alura.TechCinema.service.ConvertData;
@@ -17,9 +18,15 @@ public class Principal {
 
     private final String ADDRESS = "https://www.omdbapi.com/?t=";
 
-    private final String API_KEY = "YOUR API KEY";
+    private final String API_KEY = "YOURAPIKEY";
 
     private List<DataSeries> listDataSeries = new ArrayList<>();
+
+    private SerieRepository serieRepository;
+
+    public Principal(SerieRepository serieRepository) {
+        this.serieRepository = serieRepository;
+    }
 
     public void menu() {
         byte choice = -1;
@@ -60,9 +67,10 @@ public class Principal {
 
     private void searchSerie() {
         DataSeries data = getDataSerie();
-        listDataSeries.add(data);
+//        listDataSeries.add(data);
+        Serie serie = new Serie(data);
+        serieRepository.save(serie);
         listSearchedSeries();
-//        System.out.println(data);
     }
 
     private DataSeries getDataSerie() {

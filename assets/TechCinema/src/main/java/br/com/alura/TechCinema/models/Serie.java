@@ -2,6 +2,8 @@ package br.com.alura.TechCinema.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.OptionalDouble;
 
 // TODO ESTUDAR JPA
@@ -33,6 +35,10 @@ public class Serie {
 
     private String plot;
 
+    // OBJETO QUE NÃO VAI SER SALVO, É UM ATRIBUTO E DEPOIS VAI SER RELACIONADO COM A TABELA
+    @Transient
+    private List<Episode> episodeList = new ArrayList<>();
+
     public Serie(DataSeries dataSeries) {
         this.title = dataSeries.Title();
         this.totalSeasons = dataSeries.totalSeasons();
@@ -52,6 +58,14 @@ public class Serie {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public List<Episode> getEpisodeList() {
+        return episodeList;
+    }
+
+    public void setEpisodeList(List<Episode> episodeList) {
+        this.episodeList = episodeList;
     }
 
     public String getTitle() {
