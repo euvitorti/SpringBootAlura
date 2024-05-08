@@ -101,11 +101,9 @@ public class Principal {
     }
 
     private void listSearchedSeries() {
-        List<Serie> serieList = new ArrayList<>();
+        // BUSCANDO AS INFORMAÇÕES DO BANCO DE DADOS
 
-        serieList = listDataSeries.stream()
-                .map(d -> new Serie(d))
-                .collect(Collectors.toList());
+        List<Serie> serieList = serieRepository.findAll();
 
         serieList.stream()
                 .sorted(Comparator.comparing(Serie::getGenre))

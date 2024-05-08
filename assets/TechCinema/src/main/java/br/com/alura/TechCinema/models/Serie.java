@@ -39,6 +39,9 @@ public class Serie {
     @Transient
     private List<Episode> episodeList = new ArrayList<>();
 
+    // CONSTRUTOR PADRÃO, POIS A JPA EXIGE, PARA RECUPERAR OS DADOS DO BANCO DE DAOOS
+    public Serie(){}
+
     public Serie(DataSeries dataSeries) {
         this.title = dataSeries.Title();
         this.totalSeasons = dataSeries.totalSeasons();
