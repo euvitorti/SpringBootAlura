@@ -40,6 +40,9 @@ public class Episode {
         this.serie = serie;
     }
 
+    // CONSTRUTOR PADRÃO
+    public Episode(){}
+
     public Episode(Integer seasonNumber, DataEpisode dataEpisode) {
         this.season = seasonNumber;
         this.title = dataEpisode.Title();

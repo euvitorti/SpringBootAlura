@@ -36,7 +36,7 @@ public class Serie {
     private String plot;
 
     //RELACIONANDO COM A TABELA SERIE
-    @OneToMany(mappedBy = "serie")
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Episode> episodeList = new ArrayList<>();
 
     // CONSTRUTOR PADRÃO, POIS A JPA EXIGE, PARA RECUPERAR OS DADOS DO BANCO DE DAOOS
@@ -68,6 +68,9 @@ public class Serie {
     }
 
     public void setEpisodeList(List<Episode> episodeList) {
+        // ASSOCIÇÃO PARA A CHAVE ESTRANGEIRA
+        // ESTA SÉRIE É DONA DESSE EPISÓDIO~~~~~~~~~~
+        episodeList.forEach(e -> e.setSerie(this));
         this.episodeList = episodeList;
     }
 
@@ -138,6 +141,8 @@ public class Serie {
                         "Actors: " + actors + "\n" +
                         "Poster: " + poster + "\n" +
                         "Plot: " + plot + "\n" +
+//                        "Episode: " + getEpisodeList() + "\n" +
+                        "--------------------------\n"+
                         "🎥   Thanks for using   🎥\n";
     }
 }
