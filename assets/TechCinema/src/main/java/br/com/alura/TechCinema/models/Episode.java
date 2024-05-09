@@ -1,14 +1,44 @@
 package br.com.alura.TechCinema.models;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+@Entity
+@Table(name = "episode")
+
 public class Episode {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String title;
     private LocalDate released;
     private Integer season;
     private Integer episode;
     private double imdbRating;
+
+    // RELACIONANDO COM A TABELA SERIES
+    @ManyToOne
+    private Serie serie;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
+    }
 
     public Episode(Integer seasonNumber, DataEpisode dataEpisode) {
         this.season = seasonNumber;

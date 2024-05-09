@@ -35,8 +35,8 @@ public class Serie {
 
     private String plot;
 
-    // OBJETO QUE NÃO VAI SER SALVO, É UM ATRIBUTO E DEPOIS VAI SER RELACIONADO COM A TABELA
-    @Transient
+    //RELACIONANDO COM A TABELA SERIE
+    @OneToMany(mappedBy = "serie")
     private List<Episode> episodeList = new ArrayList<>();
 
     // CONSTRUTOR PADRÃO, POIS A JPA EXIGE, PARA RECUPERAR OS DADOS DO BANCO DE DAOOS
