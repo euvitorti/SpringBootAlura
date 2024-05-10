@@ -43,6 +43,7 @@ public class Principal {
                     [1] Buscar Série
                     [2] Buscar Episódio
                     [3] Listar Série
+                    [4] Buscar por título
                     -------------------
                     [0] Sair
                     """);
@@ -60,6 +61,9 @@ public class Principal {
                 case 3:
                     listSearchedSeries();
                     break;
+                case 4:
+                    searchSerieByTitle();
+                    break;
                 case 0:
                     System.out.println("Goodbye👋");
                     break;
@@ -68,13 +72,6 @@ public class Principal {
                     break;
             }
         }
-    }
-
-    private void searchSerie() {
-        DataSeries data = getDataSerie();
-        Serie serie = new Serie(data);
-        serieRepository.save(serie);
-        listSearchedSeries();
     }
 
     private DataSeries getDataSerie() {
@@ -91,17 +88,20 @@ public class Principal {
         return dataSeries;
     }
 
+    private void searchSerie() {
+        DataSeries data = getDataSerie();
+        Serie serie = new Serie(data);
+        serieRepository.save(serie);
+        listSearchedSeries();
+    }
+
     private void searchEpisode() {
         listSearchedSeries();
 
         System.out.println("Digite o nome da série: ");
         var serieName = scanner.nextLine();
 
-        Optional<Serie> serie = serieList.stream()
-                .filter(
-                        s -> s.getTitle().toLowerCase()
-                                .contains(serieName.toLowerCase().trim()))
-                .findFirst();
+        Optional<Serie> serie = serieRepository.findByTitleContainsIgnoreCase(serieName);
 
         if (serie.isPresent()) {
 
@@ -138,6 +138,19 @@ public class Principal {
         serieList.stream()
                 .sorted(Comparator.comparing(Serie::getGenre))
                 .forEach(System.out::println);
+    }
+
+    private void searchSerieByTitle() {
+        System.out.println("Digite o nome da série: ");
+        var serieName = scanner.nextLine();
+
+        Optional<Serie> seriesWantedList = serieRepository.findByTitleContainsIgnoreCase(serieName);
+
+        if (seriesWantedList.isPresent()) {
+            System.out.println(seriesWantedList.get());
+        } else {
+            System.out.println("Não encontrada.");
+        }
     }
 }
 //        seasons.forEach(System.out::println);
