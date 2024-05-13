@@ -45,7 +45,7 @@ public class Principal {
                     [3] Listar Série
                     [4] Buscar por título
                     [5] Buscar por ator
-//                    [6] Top Five
+                    [6] Top Five
                     -------------------
                     [0] Sair
                     """);
@@ -70,7 +70,8 @@ public class Principal {
                     searchByActor();
                     break;
                 case 6:
-//                    topFive();
+                    topFive();
+                    break;
                 case 0:
                     System.out.println("Goodbye👋");
                     break;
@@ -173,15 +174,15 @@ public class Principal {
         }
     }
 
-//    private void topFive() {
-//        List<Serie> topFiveList = serieRepository.findTop5ByOrderByImdbRating();
-//
-//        topFiveList.forEach(s ->
-//                System.out.printf("""
-//                        Título: %s.
-//                        Avaliação: %.1f
-//                        """, s.getTitle(), s.getImdbRating()));
-//    }
+    private void topFive() {
+        List<Serie> topFiveList = serieRepository.findTop5ByOrderByImdbRatingDesc();
+
+        topFiveList.forEach(s ->
+                System.out.printf("""
+                        Título: %s.
+                        Avaliação: %.1f
+                        """, s.getTitle(), s.getImdbRating()));
+    }
 
 }
 //        seasons.forEach(System.out::println);
