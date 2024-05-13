@@ -44,6 +44,8 @@ public class Principal {
                     [2] Buscar Episódio
                     [3] Listar Série
                     [4] Buscar por título
+                    [5] Buscar por ator
+//                    [6] Top Five
                     -------------------
                     [0] Sair
                     """);
@@ -64,6 +66,11 @@ public class Principal {
                 case 4:
                     searchSerieByTitle();
                     break;
+                case 5:
+                    searchByActor();
+                    break;
+                case 6:
+//                    topFive();
                 case 0:
                     System.out.println("Goodbye👋");
                     break;
@@ -152,6 +159,30 @@ public class Principal {
             System.out.println("Não encontrada.");
         }
     }
+
+    private void searchByActor() {
+        System.out.println("Digite o nome do ator: ");
+        var actorName = scanner.nextLine();
+
+        Optional<Serie> seriesFoundList = serieRepository.findByActorsContainsIgnoreCase(actorName);
+
+        if (seriesFoundList.isPresent()) {
+            System.out.println(seriesFoundList.get());
+        } else {
+            System.out.println("Ator(a) não encontrado.");
+        }
+    }
+
+//    private void topFive() {
+//        List<Serie> topFiveList = serieRepository.findTop5ByOrderByImdbRating();
+//
+//        topFiveList.forEach(s ->
+//                System.out.printf("""
+//                        Título: %s.
+//                        Avaliação: %.1f
+//                        """, s.getTitle(), s.getImdbRating()));
+//    }
+
 }
 //        seasons.forEach(System.out::println);
 //
