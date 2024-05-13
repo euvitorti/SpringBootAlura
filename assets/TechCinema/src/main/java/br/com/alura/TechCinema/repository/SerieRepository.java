@@ -1,5 +1,6 @@
 package br.com.alura.TechCinema.repository;
 
+import br.com.alura.TechCinema.models.Category;
 import br.com.alura.TechCinema.models.Serie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -15,4 +16,6 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
     Optional<Serie> findByActorsContainsIgnoreCase(String actorName);
 
     List<Serie> findTop5ByOrderByImdbRatingDesc();
+
+    List<Serie> findByGenre(Category category);
 }

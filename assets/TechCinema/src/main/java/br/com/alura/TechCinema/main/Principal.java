@@ -1,9 +1,6 @@
 package br.com.alura.TechCinema.main;
 
-import br.com.alura.TechCinema.models.DataSeason;
-import br.com.alura.TechCinema.models.DataSeries;
-import br.com.alura.TechCinema.models.Episode;
-import br.com.alura.TechCinema.models.Serie;
+import br.com.alura.TechCinema.models.*;
 import br.com.alura.TechCinema.repository.SerieRepository;
 import br.com.alura.TechCinema.service.Api;
 import br.com.alura.TechCinema.service.ConvertData;
@@ -46,6 +43,7 @@ public class Principal {
                     [4] Buscar por título
                     [5] Buscar por ator
                     [6] Top Five
+                    [7] Buscar por categoria
                     -------------------
                     [0] Sair
                     """);
@@ -71,6 +69,9 @@ public class Principal {
                     break;
                 case 6:
                     topFive();
+                    break;
+                case 7:
+                    serchByCategory();
                     break;
                 case 0:
                     System.out.println("Goodbye👋");
@@ -182,6 +183,19 @@ public class Principal {
                         Título: %s.
                         Avaliação: %.1f
                         """, s.getTitle(), s.getImdbRating()));
+    }
+
+    private void serchByCategory() {
+        System.out.println("Qual gênero? ");
+        String typeGenre = scanner.nextLine();
+
+        Category category = Category.fromPortuguese(typeGenre);
+
+        List<Serie> seriesCategoryList = serieRepository.findByGenre(category);
+
+        System.out.printf("\nSéries de %s.", typeGenre);
+
+        seriesCategoryList.forEach(System.out::println);
     }
 
 }
