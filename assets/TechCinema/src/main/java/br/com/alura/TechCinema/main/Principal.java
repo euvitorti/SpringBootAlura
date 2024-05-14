@@ -26,6 +26,8 @@ public class Principal {
 
     private List<Serie> serieList = new ArrayList<>();
 
+    private  Optional<Serie> searchSerieNameOptional;
+
     public Principal(SerieRepository serieRepository) {
         this.serieRepository = serieRepository;
     }
@@ -74,13 +76,16 @@ public class Principal {
                     topFive();
                     break;
                 case 7:
-                    serchByCategory();
+                    searchByCategory();
                     break;
                 case 8:
                     searchBySeasonAndRating();
                     break;
                 case 9:
                     findBySnippet();
+                    break;
+                case 10:
+                    topFiveEpisode();
                     break;
                 case 0:
                     System.out.println("Goodbye👋");
@@ -91,7 +96,6 @@ public class Principal {
             }
         }
     }
-
 
     private DataSeries getDataSerie() {
         System.out.println("""
@@ -163,10 +167,10 @@ public class Principal {
         System.out.println("Digite o nome da série: ");
         var serieName = scanner.nextLine();
 
-        Optional<Serie> seriesWantedList = serieRepository.findByTitleContainsIgnoreCase(serieName);
+        searchSerieNameOptional = serieRepository.findByTitleContainsIgnoreCase(serieName);
 
-        if (seriesWantedList.isPresent()) {
-            System.out.println(seriesWantedList.get());
+        if (searchSerieNameOptional.isPresent()) {
+            System.out.println(searchSerieNameOptional.get());
         } else {
             System.out.println("Não encontrada.");
         }
@@ -195,7 +199,7 @@ public class Principal {
                         """, s.getTitle(), s.getImdbRating()));
     }
 
-    private void serchByCategory() {
+    private void searchByCategory() {
         System.out.println("Qual gênero? ");
         String typeGenre = scanner.nextLine();
 
@@ -246,7 +250,30 @@ public class Principal {
                         e.getEpisode(),
                         e.getTitle()));
     }
+
+    private void topFiveEpisode() {
+        searchSerieByTitle();
+
+        Serie serie = searchSerieNameOptional.get();
+        List<Episode> topFiveEpisode = serieRepository.topFiveEpisode(serie);
+        topFiveEpisode.forEach(e ->
+                System.out.printf("""
+                        ----------------------------------
+                        Série: %s
+                        Temporada: %d
+                        Episódio: %s
+                        Título: %s
+                        Avaliação: %f
+                        """,
+                        e.getSerie().getTitle(),
+                        e.getSeason(),
+                        e.getEpisode(),
+                        e.getTitle(),
+                        e.getImdbRating()));
+    }
 }
+
+
 //        seasons.forEach(System.out::println);
 //
 ////         LAMBDA
