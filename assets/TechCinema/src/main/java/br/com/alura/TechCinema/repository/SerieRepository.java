@@ -21,8 +21,6 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
 
     List<Serie> findByGenre(Category category);
 
-//    List<Serie> findByTotalSeasonLessThanEqualAndImdbRatingGreaterThanEqual(int totalSeasons, double rating);
-
     //TODO JPQL
     @Query("SELECT s FROM Serie s WHERE s.totalSeasons <= :totalSeasons AND s.imdbRating >= :imdbRating")
     List<Serie> seriesBySeasonAndRating(int totalSeasons, double imdbRating);
@@ -32,4 +30,8 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
 
     @Query("SELECT e FROM Serie s JOIN s.episodeList e WHERE s = :serie ORDER BY e.imdbRating DESC LIMIT 5")
     List<Episode> topFiveEpisode(Serie serie);
+
+    @Query("SELECT e FROM Serie s JOIN s.episodeList e WHERE s = :serie AND YEAR(e.released) >= :year")
+    List<Episode> findByYear(Serie serie, int year);
+
 }
