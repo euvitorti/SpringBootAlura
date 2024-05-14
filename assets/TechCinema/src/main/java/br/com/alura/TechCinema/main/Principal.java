@@ -36,7 +36,7 @@ public class Principal {
         while (choice != 0) {
             System.out.println("""
                     Welcome! 🎥
-                    -------------------
+                    ------------------------------------
                     [1] Buscar Série
                     [2] Buscar Episódio
                     [3] Listar Série
@@ -44,7 +44,8 @@ public class Principal {
                     [5] Buscar por ator
                     [6] Top Five
                     [7] Buscar por categoria
-                    -------------------
+                    [8] Buscar por temporada e avaliação
+                    ------------------------------------
                     [0] Sair
                     """);
 
@@ -72,6 +73,9 @@ public class Principal {
                     break;
                 case 7:
                     serchByCategory();
+                    break;
+                case 8:
+                    searchBySeasonAndRating();
                     break;
                 case 0:
                     System.out.println("Goodbye👋");
@@ -198,6 +202,24 @@ public class Principal {
         seriesCategoryList.forEach(System.out::println);
     }
 
+    private void searchBySeasonAndRating() {
+        System.out.println("Filtrar séries até quantas temporadas? ");
+        var season = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Média da avaliação: ");
+        var rating =  scanner.nextDouble();
+        scanner.nextLine();
+
+        List<Serie> filterSerie = serieRepository.seriesBySeasonAndRating(season, rating);
+        filterSerie.forEach(s ->
+                System.out.printf("""
+                        ------------------------
+                        Título: %s.
+                        Avaliação: %.1f
+                        ------------------------
+                        """, s.getTitle(), s.getImdbRating()));
+    }
 }
 //        seasons.forEach(System.out::println);
 //
