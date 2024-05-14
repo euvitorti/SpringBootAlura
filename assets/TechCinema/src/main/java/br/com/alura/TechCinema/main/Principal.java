@@ -42,9 +42,11 @@ public class Principal {
                     [3] Listar Série
                     [4] Buscar por título
                     [5] Buscar por ator
-                    [6] Top Five
+                    [6] Top 5 Séries
                     [7] Buscar por categoria
                     [8] Buscar por temporada e avaliação
+                    [9] Buscar por trecho
+                    [10] Top 5 Episódios
                     ------------------------------------
                     [0] Sair
                     """);
@@ -77,6 +79,9 @@ public class Principal {
                 case 8:
                     searchBySeasonAndRating();
                     break;
+                case 9:
+                    findBySnippet();
+                    break;
                 case 0:
                     System.out.println("Goodbye👋");
                     break;
@@ -86,6 +91,7 @@ public class Principal {
             }
         }
     }
+
 
     private DataSeries getDataSerie() {
         System.out.println("""
@@ -219,6 +225,26 @@ public class Principal {
                         Avaliação: %.1f
                         ------------------------
                         """, s.getTitle(), s.getImdbRating()));
+    }
+
+    private void findBySnippet() {
+        System.out.println("Nome do episódio: ");
+        String episodeSnippet = scanner.nextLine();
+
+        List<Episode> episodeSnippetList = serieRepository.episodeBySnippet(episodeSnippet);
+        episodeSnippetList.forEach(e ->
+                System.out.printf("""
+                        ------------------------
+                        Série: %s
+                        Temporada: %d
+                        Episódio: %s
+                        Título: %s.
+                        ------------------------
+                        """,
+                        e.getSerie().getTitle(),
+                        e.getSeason(),
+                        e.getEpisode(),
+                        e.getTitle()));
     }
 }
 //        seasons.forEach(System.out::println);

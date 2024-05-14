@@ -1,6 +1,7 @@
 package br.com.alura.TechCinema.repository;
 
 import br.com.alura.TechCinema.models.Category;
+import br.com.alura.TechCinema.models.Episode;
 import br.com.alura.TechCinema.models.Serie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,4 +26,7 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
     //TODO JPQL
     @Query("SELECT s FROM Serie s WHERE s.totalSeasons <= :totalSeasons AND s.imdbRating >= :imdbRating")
     List<Serie> seriesBySeasonAndRating(int totalSeasons, double imdbRating);
+
+    @Query("SELECT e FROM Serie s JOIN s.episodeList e WHERE e.title ILIKE %:episodeSnippet")
+    List<Episode> episodeBySnippet(String episodeSnippet);
 }
