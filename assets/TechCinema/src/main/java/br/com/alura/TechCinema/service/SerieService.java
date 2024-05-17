@@ -35,4 +35,8 @@ public class SerieService {
     public List<SerieDTO> getTop5Series() {
         return convertData(serieRepository.findTop5ByOrderByImdbRatingDesc());
     }
+
+    public List<SerieDTO> getRelease() {
+       return convertData(serieRepository.findTop5ByOrderByEpisodeListReleasedDesc());
+    }
 }
