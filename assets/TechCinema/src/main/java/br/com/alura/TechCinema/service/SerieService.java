@@ -38,7 +38,7 @@ public class SerieService {
     }
 
     public List<SerieDTO> getRelease() {
-       return convertData(serieRepository.findTop5ByOrderByEpisodeListReleasedDesc());
+       return convertData(serieRepository.latestReleases());
     }
 
     public SerieDTO getById(Long id) {
