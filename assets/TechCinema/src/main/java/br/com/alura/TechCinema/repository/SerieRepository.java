@@ -37,7 +37,7 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
     @Query("SELECT s FROM Serie s " +
             "JOIN s.episodeList e " +
             "GROUP BY s " +
-            "ORDER BY MAX(e.released) DESC LIMIT = 5"
+            "ORDER BY MAX(e.released) DESC LIMIT 5"
     )
     List<Serie> latestReleases();
 

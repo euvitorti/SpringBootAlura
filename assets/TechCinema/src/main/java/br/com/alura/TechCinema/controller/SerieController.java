@@ -1,5 +1,6 @@
 package br.com.alura.TechCinema.controller;
 
+import br.com.alura.TechCinema.dto.EpisodeDTO;
 import br.com.alura.TechCinema.dto.SerieDTO;
 import br.com.alura.TechCinema.service.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,10 @@ public class SerieController {
 //    @PathVariable - INFORMANDO QUE VAI VIM UM PARÂMETROS
     public SerieDTO getById(@PathVariable Long id) {
         return serieService.getById(id);
+    }
+
+    @GetMapping("/{id}/temporadas/todas")
+    public List<EpisodeDTO> getAllSeasons(@PathVariable Long id) {
+        return serieService.getAllSeason(id);
     }
 }

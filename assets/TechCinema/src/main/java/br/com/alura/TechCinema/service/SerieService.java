@@ -1,5 +1,6 @@
 package br.com.alura.TechCinema.service;
 
+import br.com.alura.TechCinema.dto.EpisodeDTO;
 import br.com.alura.TechCinema.dto.SerieDTO;
 import br.com.alura.TechCinema.models.Serie;
 import br.com.alura.TechCinema.repository.SerieRepository;
@@ -38,7 +39,7 @@ public class SerieService {
     }
 
     public List<SerieDTO> getRelease() {
-       return convertData(serieRepository.latestReleases());
+        return convertData(serieRepository.latestReleases());
     }
 
     public SerieDTO getById(Long id) {
@@ -54,6 +55,18 @@ public class SerieService {
                     s.getActors(),
                     s.getPoster(),
                     s.getPlot());
+        }
+        return null;
+    }
+
+    public List<EpisodeDTO> getAllSeason(Long id) {
+        Optional<Serie> serieOptional = serieRepository.findById(id);
+
+        if (serieOptional.isPresent()) {
+            Serie s = serieOptional.get();
+            return s.getEpisodeList().stream()
+                    .map(e -> new EpisodeDTO(e.getSeason(), e.getEpisode(), e.getTitle()))
+                    .collect(Collectors.toList());
         }
         return null;
     }
