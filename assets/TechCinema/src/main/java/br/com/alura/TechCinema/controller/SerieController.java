@@ -4,6 +4,7 @@ import br.com.alura.TechCinema.dto.SerieDTO;
 import br.com.alura.TechCinema.service.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,5 +34,11 @@ public class SerieController {
     @GetMapping("/lancamentos")
     public List<SerieDTO> getRelease() {
         return serieService.getRelease();
+    }
+
+    @GetMapping("/{id}")
+//    @PathVariable - INFORMANDO QUE VAI VIM UM PARÂMETROS
+    public SerieDTO getById(@PathVariable Long id) {
+        return serieService.getById(id);
     }
 }
