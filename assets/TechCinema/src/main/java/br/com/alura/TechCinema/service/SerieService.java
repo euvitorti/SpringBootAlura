@@ -2,6 +2,7 @@ package br.com.alura.TechCinema.service;
 
 import br.com.alura.TechCinema.dto.EpisodeDTO;
 import br.com.alura.TechCinema.dto.SerieDTO;
+import br.com.alura.TechCinema.models.Category;
 import br.com.alura.TechCinema.models.Serie;
 import br.com.alura.TechCinema.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,5 +77,10 @@ public class SerieService {
                 .stream()
                 .map(e -> new EpisodeDTO(e.getSeason(), e.getEpisode(), e.getTitle()))
                 .collect(Collectors.toList());
+    }
+
+    public List<SerieDTO> getSerieByCategory(String categoryName) {
+        Category category = Category.fromPortuguese(categoryName);
+        return convertData(serieRepository.findByGenre(category));
     }
 }

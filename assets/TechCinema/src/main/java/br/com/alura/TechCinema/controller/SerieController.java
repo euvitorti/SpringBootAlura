@@ -20,7 +20,8 @@ public class SerieController {
     @Autowired
     private SerieService serieService;
 
-    // DEFININDO A ROTA
+    // DEFININDO As ROTAs
+
     @GetMapping
     public List<SerieDTO> getAllSerie() {
         return serieService.getAllSeries();
@@ -53,5 +54,11 @@ public class SerieController {
     @GetMapping("/{id}/temporadas/{number}")
     public List<EpisodeDTO> getAllSeasonBySelected(@PathVariable Long id, @PathVariable Long number) {
         return serieService.getSeasonBySelected(id, number);
+    }
+
+    @GetMapping("/categoria/{category}")
+    public List<SerieDTO> getCategory(@PathVariable String category) {
+        return serieService.getSerieByCategory(category);
+
     }
 }
