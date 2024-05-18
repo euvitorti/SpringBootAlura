@@ -47,4 +47,11 @@ public class SerieController {
     public List<EpisodeDTO> getAllSeasons(@PathVariable Long id) {
         return serieService.getAllSeason(id);
     }
+
+    // AS VARIÁVEIS QUE SÃO DECLARADAS, TEM QUE TER O MESMO NOME QUANDO SÃO DECLARADAS NO MÉTODO
+
+    @GetMapping("/{id}/temporadas/{number}")
+    public List<EpisodeDTO> getAllSeasonBySelected(@PathVariable Long id, @PathVariable Long number) {
+        return serieService.getSeasonBySelected(id, number);
+    }
 }
