@@ -32,6 +32,8 @@ public class Principal {
         this.serieRepository = serieRepository;
     }
 
+    // O CÓDIGO A SEGUIR, É FORMATO DE CONSOLE
+    // HABILITE O A CLASSE TechCinemaApplicationWithOutWeb.Java PARA USAR O FORMATO CONSOLE
     public void menu() {
         byte choice = -1;
 
