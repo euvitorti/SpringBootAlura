@@ -1,4 +1,4 @@
-package br.com.alura.TechCinema.service;
+package br.com.alura.TechCinema.service.dataconverter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

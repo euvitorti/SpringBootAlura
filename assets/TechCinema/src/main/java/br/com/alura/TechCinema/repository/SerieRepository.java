@@ -1,8 +1,8 @@
 package br.com.alura.TechCinema.repository;
 
-import br.com.alura.TechCinema.models.Category;
-import br.com.alura.TechCinema.models.Episode;
-import br.com.alura.TechCinema.models.Serie;
+import br.com.alura.TechCinema.models.category.Category;
+import br.com.alura.TechCinema.models.episode.Episode;
+import br.com.alura.TechCinema.models.serie.Serie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

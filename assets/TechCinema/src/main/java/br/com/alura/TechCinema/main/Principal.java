@@ -1,9 +1,13 @@
 package br.com.alura.TechCinema.main;
 
-import br.com.alura.TechCinema.models.*;
+import br.com.alura.TechCinema.dto.season.DataSeasonDTO;
+import br.com.alura.TechCinema.dto.serie.DataSeriesDTO;
+import br.com.alura.TechCinema.models.category.Category;
+import br.com.alura.TechCinema.models.episode.Episode;
+import br.com.alura.TechCinema.models.serie.Serie;
 import br.com.alura.TechCinema.repository.SerieRepository;
-import br.com.alura.TechCinema.service.Api;
-import br.com.alura.TechCinema.service.ConvertData;
+import br.com.alura.TechCinema.service.api.Api;
+import br.com.alura.TechCinema.service.dataconverter.ConvertData;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -20,7 +24,7 @@ public class Principal {
 
     private final String API_KEY = "YOURAPIKEY";
 
-    private List<DataSeries> listDataSeries = new ArrayList<>();
+    private List<DataSeriesDTO> listDataSeryDTOS = new ArrayList<>();
 
     private SerieRepository serieRepository;
 
@@ -103,7 +107,7 @@ public class Principal {
         }
     }
 
-    private DataSeries getDataSerie() {
+    private DataSeriesDTO getDataSerie() {
         System.out.println("""
                 --------------
                 Nome da série:""");
@@ -112,12 +116,12 @@ public class Principal {
 
         var json = api.connect( ADDRESS + seriesName.replace(" ", "+") + API_KEY);
 
-        DataSeries dataSeries = convertData.getData(json, DataSeries.class);
-        return dataSeries;
+        DataSeriesDTO dataSeriesDTO = convertData.getData(json, DataSeriesDTO.class);
+        return dataSeriesDTO;
     }
 
     private void searchSerie() {
-        DataSeries data = getDataSerie();
+        DataSeriesDTO data = getDataSerie();
         Serie serie = new Serie(data);
         serieRepository.save(serie);
         listSearchedSeries();
@@ -135,12 +139,12 @@ public class Principal {
 
             var serieFound = serie.get();
 
-            List<DataSeason> seasons = new ArrayList<>();
+            List<DataSeasonDTO> seasons = new ArrayList<>();
 
             for (int i = 1; i <= serieFound.getTotalSeasons(); i++) {
                 var json = api.connect(ADDRESS + serieFound.getTitle().replace(" ", "+") + "&season=" + i + API_KEY);
-                DataSeason dataSeason = convertData.getData(json, DataSeason.class);
-                seasons.add(dataSeason);
+                DataSeasonDTO dataSeasonDTO = convertData.getData(json, DataSeasonDTO.class);
+                seasons.add(dataSeasonDTO);
             }
 
             seasons.forEach(System.out::println);

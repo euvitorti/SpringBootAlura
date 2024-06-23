@@ -1,4 +1,4 @@
-package br.com.alura.TechCinema.service;
+package br.com.alura.TechCinema.service.chatgpt;
 
 import com.theokanning.openai.completion.CompletionRequest;
 import com.theokanning.openai.service.OpenAiService;

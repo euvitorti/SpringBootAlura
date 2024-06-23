@@ -1,5 +1,8 @@
-package br.com.alura.TechCinema.models;
+package br.com.alura.TechCinema.models.serie;
 
+import br.com.alura.TechCinema.dto.serie.DataSeriesDTO;
+import br.com.alura.TechCinema.models.category.Category;
+import br.com.alura.TechCinema.models.episode.Episode;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -42,17 +45,17 @@ public class Serie {
     // CONSTRUTOR PADRÃO, POIS A JPA EXIGE, PARA RECUPERAR OS DADOS DO BANCO DE DAOOS
     public Serie(){}
 
-    public Serie(DataSeries dataSeries) {
-        this.title = dataSeries.Title();
-        this.totalSeasons = dataSeries.totalSeasons();
-        this.imdbRating = OptionalDouble.of(Double.valueOf(dataSeries.imdbRating())).orElse(0.0);
-        this.genre = Category.fromString(dataSeries.Genre().split(",")[0].trim());
-        this.actors = dataSeries.Actors();
-        this.poster = dataSeries.Poster();
-        this.plot = dataSeries.Plot();
+    public Serie(DataSeriesDTO dataSeriesDTO) {
+        this.title = dataSeriesDTO.Title();
+        this.totalSeasons = dataSeriesDTO.totalSeasons();
+        this.imdbRating = OptionalDouble.of(Double.valueOf(dataSeriesDTO.imdbRating())).orElse(0.0);
+        this.genre = Category.fromString(dataSeriesDTO.Genre().split(",")[0].trim());
+        this.actors = dataSeriesDTO.Actors();
+        this.poster = dataSeriesDTO.Poster();
+        this.plot = dataSeriesDTO.Plot();
 
         // Para traduzir a sinopse, use a próxima linha de código
-        // this.plot = ChatGpt.getTranslate(dataSeries.Plot()).trim();
+        // this.plot = ChatGpt.getTranslate(dataSeriesDTO.Plot()).trim();
     }
 
     public long getId() {
@@ -78,56 +81,28 @@ public class Serie {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Integer getTotalSeasons() {
         return totalSeasons;
-    }
-
-    public void setTotalSeasons(Integer totalSeasons) {
-        this.totalSeasons = totalSeasons;
     }
 
     public double getImdbRating() {
         return imdbRating;
     }
 
-    public void setImdbRating(double imdbRating) {
-        this.imdbRating = imdbRating;
-    }
-
     public Category getGenre() {
         return genre;
-    }
-
-    public void setGenre(Category genre) {
-        this.genre = genre;
     }
 
     public String getActors() {
         return actors;
     }
 
-    public void setActors(String actors) {
-        this.actors = actors;
-    }
-
     public String getPoster() {
         return poster;
     }
 
-    public void setPoster(String poster) {
-        this.poster = poster;
-    }
-
     public String getPlot() {
         return plot;
-    }
-
-    public void setPlot(String plot) {
-        this.plot = plot;
     }
 
     @Override

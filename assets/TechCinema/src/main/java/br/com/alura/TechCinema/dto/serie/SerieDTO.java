@@ -1,6 +1,6 @@
-package br.com.alura.TechCinema.dto;
+package br.com.alura.TechCinema.dto.serie;
 
-import br.com.alura.TechCinema.models.Category;
+import br.com.alura.TechCinema.models.category.Category;
 
 public record SerieDTO(
         long id,

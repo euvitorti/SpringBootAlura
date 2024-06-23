@@ -1,8 +1,8 @@
 package br.com.alura.TechCinema.controller;
 
-import br.com.alura.TechCinema.dto.EpisodeDTO;
-import br.com.alura.TechCinema.dto.SerieDTO;
-import br.com.alura.TechCinema.service.SerieService;
+import br.com.alura.TechCinema.dto.episode.EpisodeDTO;
+import br.com.alura.TechCinema.dto.serie.SerieDTO;
+import br.com.alura.TechCinema.service.serieservice.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

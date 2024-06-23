@@ -1,4 +1,4 @@
-package br.com.alura.TechCinema.service;
+package br.com.alura.TechCinema.service.dataconverter;
 
 public interface Data {
 

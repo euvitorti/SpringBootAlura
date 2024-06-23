@@ -1,4 +1,4 @@
-package br.com.alura.TechCinema.models;
+package br.com.alura.TechCinema.models.category;
 
 public enum Category {
     ACTION ("Action", "Ação"),

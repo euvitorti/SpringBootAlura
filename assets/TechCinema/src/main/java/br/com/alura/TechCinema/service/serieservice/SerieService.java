@@ -1,9 +1,9 @@
-package br.com.alura.TechCinema.service;
+package br.com.alura.TechCinema.service.serieservice;
 
-import br.com.alura.TechCinema.dto.EpisodeDTO;
-import br.com.alura.TechCinema.dto.SerieDTO;
-import br.com.alura.TechCinema.models.Category;
-import br.com.alura.TechCinema.models.Serie;
+import br.com.alura.TechCinema.dto.episode.EpisodeDTO;
+import br.com.alura.TechCinema.dto.serie.SerieDTO;
+import br.com.alura.TechCinema.models.category.Category;
+import br.com.alura.TechCinema.models.serie.Serie;
 import br.com.alura.TechCinema.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

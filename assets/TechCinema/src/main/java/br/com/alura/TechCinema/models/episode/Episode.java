@@ -1,5 +1,7 @@
-package br.com.alura.TechCinema.models;
+package br.com.alura.TechCinema.models.episode;
 
+import br.com.alura.TechCinema.dto.episode.DataEpisodeDTO;
+import br.com.alura.TechCinema.models.serie.Serie;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -24,14 +26,6 @@ public class Episode {
     @ManyToOne
     private Serie serie;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public Serie getSerie() {
         return serie;
     }
@@ -43,20 +37,20 @@ public class Episode {
     // CONSTRUTOR PADRÃO
     public Episode(){}
 
-    public Episode(Integer seasonNumber, DataEpisode dataEpisode) {
+    public Episode(Integer seasonNumber, DataEpisodeDTO dataEpisodeDTO) {
         this.season = seasonNumber;
-        this.title = dataEpisode.Title();
-        this.episode = dataEpisode.Episode();
+        this.title = dataEpisodeDTO.Title();
+        this.episode = dataEpisodeDTO.Episode();
 
         // CASO O VALOR DA AVALIAÇÃO NÃO VENHA COM A FORMATAÇÃO CORRETA
         try {
-            this.imdbRating = Double.valueOf(dataEpisode.imdbRating());
+            this.imdbRating = Double.valueOf(dataEpisodeDTO.imdbRating());
         } catch (NumberFormatException e) {
             this.imdbRating = 0.0;
         }
 
         try {
-            this.released = LocalDate.parse(dataEpisode.Released());
+            this.released = LocalDate.parse(dataEpisodeDTO.Released());
         } catch (DateTimeParseException e) {
             this.released = null;
         }
@@ -66,40 +60,16 @@ public class Episode {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public LocalDate getReleased() {
-        return released;
-    }
-
-    public void setReleased(LocalDate released) {
-        this.released = released;
-    }
-
     public Integer getSeason() {
         return season;
-    }
-
-    public void setSeason(Integer season) {
-        this.season = season;
     }
 
     public Integer getEpisode() {
         return episode;
     }
 
-    public void setEpisode(Integer episode) {
-        this.episode = episode;
-    }
-
     public double getImdbRating() {
         return imdbRating;
-    }
-
-    public void setImdbRating(double imdbRating) {
-        this.imdbRating = imdbRating;
     }
 
     @Override
